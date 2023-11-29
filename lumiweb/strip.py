@@ -20,3 +20,6 @@ class Strip:
     def set_full_color(self, color):
         self.pixels.fill(color)
         self.pixels.show()
+
+    def update(self):
+        self.pixels.show()

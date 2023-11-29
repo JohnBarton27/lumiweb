@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 
 class Effect(ABC):
 
-    def __init__(strip):
+    def __init__(self, strip):
         self.strip = strip
 
     @abstractmethod
-    def run():
+    def run(self):
         pass
     
