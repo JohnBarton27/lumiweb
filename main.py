@@ -29,6 +29,8 @@ async def set_color(color: str):
         STRIP.set_full_color((0, 255, 0))
     elif color == "BLUE":
         STRIP.set_full_color((0, 0, 255))
+    elif color == "WARMWHITE":
+        STRIP.set_full_color((255, 120, 10))
     elif color == "OFF":
         STRIP.set_full_color((0, 0, 0))
 
@@ -59,8 +61,6 @@ if __name__ == "__main__":
 
     STRIP.set_full_color((0, 0, 0))
 
-    # Default effect
-    # effect = CandyCane(strip, stripe_width=10)
-    # effect.run()
+    STRIP.set_full_color((255, 120, 10))
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
