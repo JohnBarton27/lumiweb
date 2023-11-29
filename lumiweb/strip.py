@@ -30,6 +30,8 @@ class Strip:
             self.thread = None
             self.stop_animation_flag = False
 
+        self.pixels.fill((0, 0, 0))
+        self.pixels.show()
 
     def set_full_color(self, color):
         self._stop_current_animation()

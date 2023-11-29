@@ -2,9 +2,10 @@ import board
 from fastapi import FastAPI
 import neopixel
 
-
 from lumiweb.strip import Strip
 from lumiweb.effects.candy_cane import CandyCane
+from lumiweb.effects.rgb_twinkle import RgbTwinkle
+
 
 app = FastAPI()
 
@@ -35,11 +36,20 @@ async def set_color(color: str):
 
 
 
+# EFFECTS
+
 @app.get("/effect/candycane")
 async def candy_cane():
     effect = CandyCane(STRIP, stripe_width=10)
     STRIP.set_animation(effect.run)
     return "Running candy cane effect..."
+
+
+@app.get("/effect/rgbtwinkle")
+async def rgb_twinkle():
+    effect = RgbTwinkle(STRIP)
+    STRIP.set_animation(effect.run)
+    return "Running RGB Twinkle effect..."
 
 
 if __name__ == "__main__":
