@@ -5,7 +5,7 @@ from lumiweb.effects.effect import Effect
 
 class CandyCane(Effect):
 
-    def __init__(self, strip, stripe_width: int = 5, stop_flag: bool = False):
+    def __init__(self, strip, stripe_width: int = 5):
         super().__init__(strip)
         self.stripe_width = stripe_width
 
