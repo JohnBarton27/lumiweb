@@ -1,0 +1,9 @@
+fastapi
+requests
+adafruit-blinka
+adafruit-circuitpython-neopixel
+watchdog
+# sudo apt-get -y install python3-dev
+# sudo apt-get -y install python3-rpi.gpio
+RPi.GPIO
+rpi_ws281x
