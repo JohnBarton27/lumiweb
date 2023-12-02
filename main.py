@@ -1,7 +1,8 @@
 import board
 from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import neopixel
 
 from lumiweb.strip import Strip
@@ -12,6 +13,7 @@ from lumiweb.effects.rgb_twinkle import RgbTwinkle
 app = FastAPI()
 
 templates = Jinja2Templates(directory="lumiweb/static/templates")
+app.mount("/style", StaticFiles(directory="lumiweb/static/style"), name="style")
 
 NUM_PIXELS = 148
 GPIO_PIN = board.D12
