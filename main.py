@@ -33,7 +33,7 @@ async def index(request: Request):
 
 
 @app.get("/color/{color}")
-async def set_color(color: str):
+async def set_color(color: str, r: int = 0, g: int = 0, b: int = 0):
     print("SETTING COLOR...")
     if color == "RED":
         STRIP.set_full_color((255, 0, 0))
@@ -45,6 +45,8 @@ async def set_color(color: str):
         STRIP.set_full_color((255, 120, 10))
     elif color == "OFF":
         STRIP.set_full_color((0, 0, 0))
+    elif color == "CUSTOM":
+        STRIP.set_full_color((r, g, b))
 
     return f"Setting full strip to {color}..."
 

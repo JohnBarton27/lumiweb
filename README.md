@@ -14,6 +14,7 @@ Endpoint           | Description
 `/color/BLUE`      | Sets all LEDs to BLUE (0, 0, 255)
 `/color/WARMWHITE` | Sets all LEDs to a warm white (255, 120, 10)
 `/color/OFF`       | Turns all LEDs off (0, 0, 0)
+`/color/CUSTOM`    | Sets a custom color using `r`, `g`, and `b` query parameters
 
 
 ### Animations/Effects
