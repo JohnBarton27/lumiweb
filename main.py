@@ -1,5 +1,7 @@
 import board
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 import neopixel
 
 from lumiweb.strip import Strip
@@ -8,6 +10,8 @@ from lumiweb.effects.rgb_twinkle import RgbTwinkle
 
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory="lumiweb/static/templates")
 
 NUM_PIXELS = 148
 GPIO_PIN = board.D12
@@ -18,6 +22,12 @@ STRIP = None
 def setup():
     global STRIP
     STRIP = Strip(GPIO_PIN, NUM_PIXELS, pixel_order=neopixel.GRB)
+
+
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    # Render the HTML template and pass data to it
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/color/{color}")

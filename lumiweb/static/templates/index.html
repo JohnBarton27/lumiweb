@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LumiWeb</title>
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header styles */
+        h1 {
+            text-align: center;
+        }
+
+        /* Input styles */
+        input[type="range"] {
+            width: 100%;
+            margin: 5px 0;
+            background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+        }
+
+        /* Button styles */
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #0078d4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* LED strip styles */
+        .led-strip {
+            display: flex;
+            justify-content: center;
+        }
+
+        .led {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border-radius: 50%;
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body, html {
+                background-color: #121212;
+                color: #fff;
+            }
+
+            .container {
+                background-color: #333;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+
+            input[type="range"] {
+                background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LumiWeb</h1>
+
+        <div>
+            <label for="red">Red:</label>
+            <input type="range" id="red" min="0" max="255" value="0">
+        </div>
+
+        <div>
+            <label for="green">Green:</label>
+            <input type="range" id="green" min="0" max="255" value="0">
+        </div>
+
+        <div>
+            <label for="blue">Blue:</label>
+            <input type="range" id="blue" min="0" max="255" value="0">
+        </div>
+
+        <div>
+            <label for="brightness">Brightness:</label>
+            <input type="range" id="brightness" min="0" max="100" value="100">
+        </div>
+
+        <div>
+            <button id="apply">Apply</button>
+        </div>
+
+        <div class="led-strip">
+            <!-- This is where the LED strip preview will be generated -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for controlling the LED strip goes here
+        document.getElementById("apply").addEventListener("click", function () {
+            // Get the values of the color and brightness inputs
+            const red = document.getElementById("red").value;
+            const green = document.getElementById("green").value;
+            const blue = document.getElementById("blue").value;
+            const brightness = document.getElementById("brightness").value;
+
+            // Create a style string for the LED strip preview
+            const ledStyle = `background-color: rgba(${red}, ${green}, ${blue}, ${brightness / 100})`;
+
+            // Create a div element for each LED in the strip
+            const ledStrip = document.querySelector(".led-strip");
+            ledStrip.innerHTML = "";
+
+            for (let i = 0; i < 10; i++) {
+                const led = document.createElement("div");
+                led.className = "led";
+                led.style = ledStyle;
+                ledStrip.appendChild(led);
+            }
+        });
+    </script>
+</body>
+</html>
