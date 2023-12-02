@@ -7,6 +7,9 @@
 <body>
     <div class="container">
         <h1>LumiWeb</h1>
+    </div>
+    <div class="container">
+        <h2>Custom RGB Color</h2>
 
         <div>
             <label for="red">Red:</label>
@@ -24,17 +27,34 @@
         </div>
 
         <div>
-            <button id="apply">Apply</button>
+            <button id="apply-custom-rgb">Apply</button>
         </div>
 
         <div class="led-strip">
             <!-- This is where the LED strip preview will be generated -->
         </div>
     </div>
+    <div class="container">
+        <h2>Animations</h2>
+
+        <div>
+            <label for="animation-selector">Animation</label>
+            <select id="animation-selector">
+                <option value="" disabled selected>Select</option>
+                <option value="candycane">Candy Cane</option>
+                <option value="rgbtwinkle">RGB Twinkle</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="apply-animation">Apply</button>
+        </div>
+
+    </div>
 
     <script>
         // JavaScript code for controlling the LED strip goes here
-        document.getElementById("apply").addEventListener("click", function () {
+        document.getElementById("apply-custom-rgb").addEventListener("click", function () {
             // Get the values of the color inputs
             const red = document.getElementById("red").value;
             const green = document.getElementById("green").value;
@@ -55,6 +75,32 @@
             }
 
             const url = `/color/CUSTOM?r=${red}&g=${green}&b=${blue}`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the response data if needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+
+        document.getElementById("apply-animation").addEventListener("click", function () {
+            // Get the values of the color inputs
+            const animation = document.getElementById("animation-selector").value;
+
+            const ledStrip = document.querySelector(".led-strip");
+            ledStrip.innerHTML = "";
+
+            const url = `/effect/${animation}`;
             
             fetch(url)
                 .then(response => {
