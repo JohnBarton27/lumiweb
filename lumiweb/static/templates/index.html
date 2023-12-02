@@ -24,11 +24,6 @@
         </div>
 
         <div>
-            <label for="brightness">Brightness:</label>
-            <input type="range" id="brightness" min="0" max="100" value="100">
-        </div>
-
-        <div>
             <button id="apply">Apply</button>
         </div>
 
@@ -40,14 +35,13 @@
     <script>
         // JavaScript code for controlling the LED strip goes here
         document.getElementById("apply").addEventListener("click", function () {
-            // Get the values of the color and brightness inputs
+            // Get the values of the color inputs
             const red = document.getElementById("red").value;
             const green = document.getElementById("green").value;
             const blue = document.getElementById("blue").value;
-            const brightness = document.getElementById("brightness").value;
 
             // Create a style string for the LED strip preview
-            const ledStyle = `background-color: rgba(${red}, ${green}, ${blue}, ${brightness / 100})`;
+            const ledStyle = `background-color: rgb(${red}, ${green}, ${blue})`;
 
             // Create a div element for each LED in the strip
             const ledStrip = document.querySelector(".led-strip");
