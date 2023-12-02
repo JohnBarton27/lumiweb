@@ -59,6 +59,24 @@
                 led.style = ledStyle;
                 ledStrip.appendChild(led);
             }
+
+            const url = `/color/CUSTOM?r=${red}&g=${green}&b=${blue}`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the response data if needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch
+                    console.error('There was a problem with the fetch operation:', error);
+                });
         });
     </script>
 </body>
