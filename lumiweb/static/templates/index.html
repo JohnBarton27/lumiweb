@@ -33,6 +33,11 @@
         <div class="led-strip">
             <!-- This is where the LED strip preview will be generated -->
         </div>
+
+        <div class="rgb-tuple">
+            <!-- This is where the RGB tuple will be shown -->
+        </div>
+
     </div>
     <div class="container">
         <h2>Animations</h2>
@@ -43,6 +48,7 @@
                 <option value="" disabled selected>Select</option>
                 <option value="candycane">Candy Cane</option>
                 <option value="rgbtwinkle">RGB Twinkle</option>
+                <option value="blueorange">Blue & Orange</option>
             </select>
         </div>
 
@@ -74,6 +80,9 @@
                 ledStrip.appendChild(led);
             }
 
+            const rgb_tuple = document.querySelector(".rgb-tuple");
+            rgb_tuple.innerText = `(${red}, ${green}, ${blue})`
+            
             const url = `/color/CUSTOM?r=${red}&g=${green}&b=${blue}`;
             
             fetch(url)

@@ -54,6 +54,12 @@ button {
     border-radius: 50%;
 }
 
+.rgb-tuple {
+    text-align: center;
+    margin-top: 10px;
+    font-size: medium;
+}
+
 /* Dropdown */
 select {
     width: 100%;
