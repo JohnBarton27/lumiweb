@@ -24,3 +24,4 @@ Endpoint             | Description
 -------------------- | ---
 `/effect/candycane`  | Creates a moving "candy-cane" pattern (alternating blocks of red & white LEDs)
 `/effect/rgbtwinkle` | Turns every 3rd LED either red, green, or blue (in order) and has them all slowly fade on/off on repeat.
+`/effect/blueorange` | Creates orange and blue "waves" starting from the center of the LED strip

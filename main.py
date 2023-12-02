@@ -71,7 +71,7 @@ async def rgb_twinkle():
 
 @app.get("/effect/blueorange")
 async def blue_orange():
-    effect = BlueOrange(STRIP, stripe_width=10)
+    effect = BlueOrange(STRIP)
     STRIP.set_animation(effect.run)
     return "Running Blue Orange effect..."
 
