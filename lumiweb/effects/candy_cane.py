@@ -14,7 +14,7 @@ class CandyCane(Effect):
             if ((i + offset) // self.stripe_width) % 2 == 0:
                 color = (255, 0, 0)  # Red
             else:
-                color = (255, 255, 255) # White
+                color = (128, 128, 128) # White
 
             self.strip.pixels[i] = color
 
@@ -28,5 +28,5 @@ class CandyCane(Effect):
             self.set_candy_cane_stripes(offset)
             offset += 1
 
-            time.sleep(0.5)
+            time.sleep(0.05)
             

@@ -16,8 +16,8 @@ app = FastAPI()
 templates = Jinja2Templates(directory="lumiweb/static/templates")
 app.mount("/style", StaticFiles(directory="lumiweb/static/style"), name="style")
 
-NUM_PIXELS = 148
-GPIO_PIN = board.D12
+NUM_PIXELS = 721
+GPIO_PIN = board.D18
 
 STRIP = None
 
@@ -78,10 +78,12 @@ async def blue_orange():
 
 if __name__ == "__main__":
     import uvicorn
+    import time
 
     setup()
 
     STRIP.set_full_color((0, 0, 0))
+    time.sleep(1)
 
     STRIP.set_full_color((255, 120, 10))
 
