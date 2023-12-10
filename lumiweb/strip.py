@@ -1,5 +1,6 @@
 import neopixel
 import threading
+import time
 
 
 class Strip:
@@ -25,7 +26,10 @@ class Strip:
     def _stop_current_animation(self):
         if self.thread:
             self.stop_animation_flag = True
-            self.thread.join()
+            try:
+                self.thread.join()
+            except RuntimeError:
+                print("Failed to join the thread!")
 
             self.thread = None
             self.stop_animation_flag = False
@@ -37,6 +41,26 @@ class Strip:
         self._stop_current_animation()
         self.pixels.fill(color)
         self.pixels.show()
+
+    def fade_pixels(self, pixel_indices: list, 
+                    starting_color, target_color):
+        num_steps = 25
+
+        r_delta_per_step = (target_color[0] - starting_color[0])/num_steps
+        g_delta_per_step = (target_color[1] - starting_color[1])/num_steps
+        b_delta_per_step = (target_color[2] - starting_color[2])/num_steps
+
+        for i in range(0, num_steps):
+            if self.stop_animation_flag:
+                break
+
+            for pixel in pixel_indices:
+                new_r = starting_color[0] + (r_delta_per_step * i)
+                new_g = starting_color[1] + (g_delta_per_step * i)
+                new_b = starting_color[2] + (b_delta_per_step * i)
+                self.pixels[pixel] = (new_r, new_g, new_b)
+            
+            self.pixels.show()
 
     def update(self):
         self.pixels.show()
