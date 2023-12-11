@@ -1,0 +1,2 @@
+class StopAnimationException(Exception):
+    pass

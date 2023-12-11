@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import neopixel
 import threading
 import time
@@ -26,16 +27,20 @@ class Strip:
     def _stop_current_animation(self):
         if self.thread:
             self.stop_animation_flag = True
-            try:
-                self.thread.join()
-            except RuntimeError:
-                print("Failed to join the thread!")
+            self.thread.join()
 
             self.thread = None
             self.stop_animation_flag = False
 
         self.pixels.fill((0, 0, 0))
         self.pixels.show()
+
+    def pause(self, seconds: float):
+        now = datetime.now()
+        target = now + timedelta(seconds=seconds)
+
+        while target < datetime.now() and not self.stop_animation_flag:
+            time.sleep(0.05)
 
     def set_full_color(self, color):
         self._stop_current_animation()

@@ -11,7 +11,6 @@ class AmberWave(Effect):
     AMBER_DIM = (64, 30, 2)
 
     def run(self):
-        self.strip.set_full_color((0, 0, 0))
         indices_to_light = [i for i in range(0, self.strip.num_pixels, 4)]
         for i in indices_to_light:
             self.strip.pixels[i] = self.__class__.AMBER_DIM
@@ -35,6 +34,9 @@ class AmberWave(Effect):
                 wave_end = self.strip.num_pixels
 
             for i in indices_to_light:
+                if self.strip.stop_animation_flag:
+                    return
+
                 if wave_start <= i <= wave_end:
                     self.strip.pixels[i] = self.__class__.AMBER
                 else:
@@ -48,10 +50,9 @@ class AmberWave(Effect):
                 wave_center += wave_speed
 
             if wave_center >= self.strip.num_pixels + wave_length:
-                time.sleep(3)
+                self.strip.pause(3)
                 reverse = True
 
             if wave_center <= 0 - wave_length:
-                time.sleep(3)
+                self.strip.pause(3)
                 reverse = False
-

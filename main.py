@@ -86,7 +86,7 @@ async def amber_twinkle():
 
 
 @app.get("/effect/amberwave")
-async def amber_wave():     
+async def amber_wave():
     effect = AmberWave(STRIP)
     STRIP.set_animation(effect.run)
     return "Running Amber Twinkle effect..."

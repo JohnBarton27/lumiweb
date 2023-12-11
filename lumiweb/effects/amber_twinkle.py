@@ -11,7 +11,6 @@ class AmberTwinkle(Effect):
     AMBER_DIM = (64, 30, 2)
 
     def run(self):
-        self.strip.set_full_color((0, 0, 0))
         indices_to_light = [i for i in range(0, self.strip.num_pixels, 4)]
         for i in indices_to_light:
             self.strip.pixels[i] = self.__class__.AMBER_DIM
