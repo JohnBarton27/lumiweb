@@ -7,6 +7,7 @@ import neopixel
 
 from lumiweb.strip import Strip
 from lumiweb.effects.amber_twinkle import AmberTwinkle
+from lumiweb.effects.amber_wave import AmberWave
 from lumiweb.effects.blue_orange import BlueOrange
 from lumiweb.effects.candy_cane import CandyCane
 from lumiweb.effects.rgb_twinkle import RgbTwinkle
@@ -80,6 +81,13 @@ async def blue_orange():
 @app.get("/effect/ambertwinkle")
 async def amber_twinkle():
     effect = AmberTwinkle(STRIP)
+    STRIP.set_animation(effect.run)
+    return "Running Amber Twinkle effect..."
+
+
+@app.get("/effect/amberwave")
+async def amber_wave():     
+    effect = AmberWave(STRIP)
     STRIP.set_animation(effect.run)
     return "Running Amber Twinkle effect..."
 
