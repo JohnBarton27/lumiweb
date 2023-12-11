@@ -38,8 +38,7 @@ class Strip:
     def pause(self, seconds: float):
         now = datetime.now()
         target = now + timedelta(seconds=seconds)
-
-        while target < datetime.now() and not self.stop_animation_flag:
+        while target > datetime.now() and not self.stop_animation_flag:
             time.sleep(0.05)
 
     def set_full_color(self, color):
@@ -74,4 +73,4 @@ class Strip:
         self._stop_current_animation()
 
         self.thread = threading.Thread(target=effect)
-        self.thread.start() 
+        self.thread.start()
