@@ -10,6 +10,7 @@ from lumiweb.effects.amber_twinkle import AmberTwinkle
 from lumiweb.effects.amber_wave import AmberWave
 from lumiweb.effects.area_testing import AreaTesting 
 from lumiweb.effects.blue_orange import BlueOrange
+from lumiweb.effects.blue_white_pattern import BlueWhitePattern
 from lumiweb.effects.candy_cane import CandyCane
 from lumiweb.effects.red_green_pattern import RedGreenPattern
 from lumiweb.effects.reindeer_chase import ReindeerChase
@@ -124,6 +125,12 @@ async def red_green_pattern():
     effect = RedGreenPattern(STRIP)
     STRIP.set_animation(effect.run)
     return "Running Red Green Pattern effect..."
+
+@app.get("/effect/bluewhitepattern")
+async def blue_white_pattern():
+    effect = BlueWhitePattern(STRIP)
+    STRIP.set_animation(effect.run)
+    return "Running Blue White Pattern effect..."
 
 
 # SHOWS
