@@ -1,6 +1,3 @@
-from datetime import datetime, timedelta
-import time
-
 from lumiweb.effects.effect import Effect
 
 
