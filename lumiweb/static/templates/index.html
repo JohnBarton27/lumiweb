@@ -50,13 +50,32 @@
                 <option value="amberwave">Amber Wave</option>
                 <option value="blueorange">Blue & Orange</option>
                 <option value="candycane">Candy Cane</option>
+                <option value="redgreenpattern">Red Green Pattern</option>
                 <option value="rgbtwinkle">RGB Twinkle</option>
+                <option value="reindeerchase">Reindeer Chase</option>
                 <option value="areatesting">Area Testing</option>
             </select>
         </div>
 
         <div>
             <button id="apply-animation">Apply</button>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h2>Shows</h2>
+
+        <div>
+            <label for="show-selector">Show</label>
+            <select id="show-selector">
+                <option value="" disabled selected>Select</option>
+                <option value="manheimcarol">Carol of the Bells</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="apply-show">Apply</button>
         </div>
 
     </div>
@@ -106,13 +125,37 @@
         });
 
         document.getElementById("apply-animation").addEventListener("click", function () {
-            // Get the values of the color inputs
             const animation = document.getElementById("animation-selector").value;
 
             const ledStrip = document.querySelector(".led-strip");
             ledStrip.innerHTML = "";
 
             const url = `/effect/${animation}`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the response data if needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+
+        document.getElementById("apply-show").addEventListener("click", function () {
+            const show = document.getElementById("show-selector").value;
+
+            const ledStrip = document.querySelector(".led-strip");
+            ledStrip.innerHTML = "";
+
+            const url = `/show/${show}`;
             
             fetch(url)
                 .then(response => {

@@ -47,9 +47,7 @@ class Strip:
         self.pixels.show()
 
     def fade_pixels(self, pixel_indices: list, 
-                    starting_color, target_color):
-        num_steps = 25
-
+                    starting_color, target_color, num_steps=25):
         r_delta_per_step = (target_color[0] - starting_color[0])/num_steps
         g_delta_per_step = (target_color[1] - starting_color[1])/num_steps
         b_delta_per_step = (target_color[2] - starting_color[2])/num_steps
@@ -65,6 +63,11 @@ class Strip:
                 self.pixels[pixel] = (new_r, new_g, new_b)
             
             self.pixels.show()
+
+        for pixel in pixel_indices:
+            self.pixels[pixel] = target_color
+        
+        self.pixels.show()
 
     def update(self):
         self.pixels.show()

@@ -11,7 +11,11 @@ from lumiweb.effects.amber_wave import AmberWave
 from lumiweb.effects.area_testing import AreaTesting 
 from lumiweb.effects.blue_orange import BlueOrange
 from lumiweb.effects.candy_cane import CandyCane
+from lumiweb.effects.red_green_pattern import RedGreenPattern
+from lumiweb.effects.reindeer_chase import ReindeerChase
 from lumiweb.effects.rgb_twinkle import RgbTwinkle
+
+from lumiweb.shows.manheim_carol import ManheimCarol
 
 
 app = FastAPI()
@@ -109,6 +113,27 @@ async def area_testing():
     STRIP.set_animation(effect.run)
     return "Running Area Testing effect..."
 
+@app.get("/effect/reindeerchase")
+async def reindeer_chase():
+    effect = ReindeerChase(STRIP)
+    STRIP.set_animation(effect.run)
+    return "Running Reindeer Chase effect..."
+
+@app.get("/effect/redgreenpattern")
+async def red_green_pattern():
+    effect = RedGreenPattern(STRIP)
+    STRIP.set_animation(effect.run)
+    return "Running Red Green Pattern effect..."
+
+
+# SHOWS
+
+@app.get("/show/manheimcarol")
+async def manheim_carol():
+    show = ManheimCarol(STRIP)
+    STRIP.set_animation(show.run)
+    return "Running Manheim Steamroller - Carol of the Bells show..."
+
 if __name__ == "__main__":
     import uvicorn
     import time
@@ -117,7 +142,5 @@ if __name__ == "__main__":
 
     STRIP.set_full_color((0, 0, 0))
     time.sleep(1)
-
-    STRIP.set_full_color((255, 120, 10))
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
