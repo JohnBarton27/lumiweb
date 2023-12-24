@@ -40,12 +40,22 @@ NUM_PIXELS = 721
 GPIO_PIN = board.D18
 
 STRIP = None
-
+CURRENT_PATTERN = "OFF"
 
 def setup():
     global STRIP
     STRIP = Strip(GPIO_PIN, NUM_PIXELS, pixel_order=neopixel.GRB)
 
+
+def set_current_pattern(pattern_name: str):
+    global CURRENT_PATTERN
+    CURRENT_PATTERN = pattern_name
+
+
+@app.get("/api/health")
+async def get_health(request: Request):
+    return {"healthy": True,
+            "current_pattern": CURRENT_PATTERN}
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
@@ -55,6 +65,7 @@ async def index(request: Request):
 
 @app.get("/color/{color}")
 async def set_color(color: str, r: int = 0, g: int = 0, b: int = 0):
+    global CURRENT_PATTERN
     print("SETTING COLOR...")
     if color == "RED":
         STRIP.set_full_color((255, 0, 0))
@@ -69,6 +80,7 @@ async def set_color(color: str, r: int = 0, g: int = 0, b: int = 0):
     elif color == "CUSTOM":
         STRIP.set_full_color((r, g, b))
 
+    set_current_pattern(f"Color: ({r}, {g}, {b})")
     return f"Setting full strip to {color}..."
 
 
@@ -79,6 +91,7 @@ async def set_color(color: str, r: int = 0, g: int = 0, b: int = 0):
 async def candy_cane():
     effect = CandyCane(STRIP, stripe_width=10)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Candy Cane")
     return "Running candy cane effect..."
 
 
@@ -86,6 +99,7 @@ async def candy_cane():
 async def rgb_twinkle():
     effect = RgbTwinkle(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("RGB Twinkle")
     return "Running RGB Twinkle effect..."
 
 
@@ -93,6 +107,7 @@ async def rgb_twinkle():
 async def blue_orange():
     effect = BlueOrange(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Blue & Orange")
     return "Running Blue Orange effect..."
 
 
@@ -100,6 +115,7 @@ async def blue_orange():
 async def amber_twinkle():
     effect = AmberTwinkle(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Amber Twinkle")
     return "Running Amber Twinkle effect..."
 
 
@@ -107,36 +123,42 @@ async def amber_twinkle():
 async def amber_wave():
     effect = AmberWave(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Amber Wave")
     return "Running Amber Twinkle effect..."
 
 @app.get("/effect/areatesting")
 async def area_testing():
     effect = AreaTesting(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Area Testing")
     return "Running Area Testing effect..."
 
 @app.get("/effect/reindeerchase")
 async def reindeer_chase():
     effect = ReindeerChase(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Reindeer Chase")
     return "Running Reindeer Chase effect..."
 
 @app.get("/effect/redgreenpattern")
 async def red_green_pattern():
     effect = RedGreenPattern(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Red/Green Pattern")
     return "Running Red Green Pattern effect..."
 
 @app.get("/effect/bluewhitepattern")
 async def blue_white_pattern():
     effect = BlueWhitePattern(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("Blue/White Pattern")
     return "Running Blue White Pattern effect..."
 
 @app.get("/effect/rgbchase")
 async def rgb_chase():
     effect = RGBChase(STRIP)
     STRIP.set_animation(effect.run)
+    set_current_pattern("RGB Chase")
     return "Running RGB Chase effect..."
 
 
@@ -146,6 +168,7 @@ async def rgb_chase():
 async def manheim_carol():
     show = ManheimCarol(STRIP)
     STRIP.set_animation(show.run)
+    set_current_pattern("Carol of the Bells")
     return "Running Manheim Steamroller - Carol of the Bells show..."
 
 if __name__ == "__main__":
