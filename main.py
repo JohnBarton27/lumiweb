@@ -12,10 +12,12 @@ from lumiweb.effects.area_testing import AreaTesting
 from lumiweb.effects.blue_orange import BlueOrange
 from lumiweb.effects.blue_white_pattern import BlueWhitePattern
 from lumiweb.effects.candy_cane import CandyCane
+from lumiweb.effects.fourth_july import FourthJuly
 from lumiweb.effects.red_green_pattern import RedGreenPattern
 from lumiweb.effects.reindeer_chase import ReindeerChase
 from lumiweb.effects.rgb_chase import RGBChase
 from lumiweb.effects.rgb_twinkle import RgbTwinkle
+from lumiweb.effects.rgb_wave import RGBWave
 
 from lumiweb.shows.manheim_carol import ManheimCarol
 
@@ -161,6 +163,20 @@ async def rgb_chase():
     set_current_pattern("RGB Chase")
     return "Running RGB Chase effect..."
 
+@app.get("/effect/rgbwave")
+async def rgb_wave():
+    effect = RGBWave(STRIP)
+    STRIP.set_animation(effect.run)
+    set_current_pattern("RGB Wave")
+    return "Running RGB Wave effect..."
+
+
+@app.get("/effect/fourthjuly")
+async def fourth_july():
+    effect = FourthJuly(STRIP, stripe_width=10)
+    STRIP.set_animation(effect.run)
+    set_current_pattern("Fourth of July")
+    return "Running Fourth of July effect..."
 
 # SHOWS
 
