@@ -21,6 +21,9 @@ from lumiweb.effects.rgb_wave import RGBWave
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
 from lumiweb.effects.halloween.candy_corn import CandyCorn
 from lumiweb.effects.halloween.halloween_chase import HalloweenChase
+from lumiweb.effects.generic.chase import Chase
+
+from lumiweb.effects.halloween import PURPLE, ORANGE
 
 from lumiweb.shows.manheim_carol import ManheimCarol
 
@@ -201,7 +204,7 @@ async def candy_corn():
 
 @app.get("/effect/halloween/chase")
 async def halloween_chase():
-    effect = HalloweenChase(STRIP)
+    effect = Chase(STRIP, [PURPLE, ORANGE])
     STRIP.set_animation(effect.run)
     set_current_pattern("Halloween Chase")
     return "Running Halloween Chase effect..."
