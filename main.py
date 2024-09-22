@@ -19,6 +19,8 @@ from lumiweb.effects.rgb_chase import RGBChase
 from lumiweb.effects.rgb_twinkle import RgbTwinkle
 from lumiweb.effects.rgb_wave import RGBWave
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
+from lumiweb.effects.halloween.candy_corn import CandyCorn
+from lumiweb.effects.halloween.halloween_chase import HalloweenChase
 
 from lumiweb.shows.manheim_carol import ManheimCarol
 
@@ -182,12 +184,27 @@ async def fourth_july():
 
 # HALLOWEEN
 @app.get("/effect/halloween/wave")
-async def fourth_july():
+async def halloween_wave():
     effect = HalloweenWave(STRIP)
     STRIP.set_animation(effect.run)
     set_current_pattern("Halloween Wave")
     return "Running Halloween Wave effect..."
 
+
+@app.get("/effect/halloween/candycorn")
+async def candy_corn():
+    effect = CandyCorn(STRIP, stripe_width=10)
+    STRIP.set_animation(effect.run)
+    set_current_pattern("Candy Corn")
+    return "Running candy corn effect..."
+
+
+@app.get("/effect/halloween/chase")
+async def halloween_chase():
+    effect = HalloweenChase(STRIP)
+    STRIP.set_animation(effect.run)
+    set_current_pattern("Halloween Chase")
+    return "Running Halloween Chase effect..."
 
 # SHOWS
 
