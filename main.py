@@ -202,12 +202,7 @@ async def candy_corn():
     return "Running candy corn effect..."
 
 
-@app.get("/effect/halloween/chase")
-async def halloween_chase():
-    effect = Chase(STRIP, [PURPLE, ORANGE])
-    STRIP.set_animation(effect.run)
-    set_current_pattern("Halloween Chase")
-    return "Running Halloween Chase effect..."
+
 
 # SHOWS
 
