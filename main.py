@@ -15,15 +15,11 @@ from lumiweb.effects.candy_cane import CandyCane
 from lumiweb.effects.fourth_july import FourthJuly
 from lumiweb.effects.red_green_pattern import RedGreenPattern
 from lumiweb.effects.reindeer_chase import ReindeerChase
-from lumiweb.effects.rgb_chase import RGBChase
 from lumiweb.effects.rgb_twinkle import RgbTwinkle
 from lumiweb.effects.rgb_wave import RGBWave
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
 from lumiweb.effects.halloween.candy_corn import CandyCorn
-from lumiweb.effects.halloween.halloween_chase import HalloweenChase
 from lumiweb.effects.generic.chase import Chase
-
-from lumiweb.effects.halloween import PURPLE, ORANGE
 
 from lumiweb.shows.manheim_carol import ManheimCarol
 
@@ -164,7 +160,7 @@ async def blue_white_pattern():
 
 @app.get("/effect/rgbchase")
 async def rgb_chase():
-    effect = RGBChase(STRIP)
+    effect = Chase(STRIP, [(255, 0, 0), (0, 255, 0), (0, 0, 255)])
     STRIP.set_animation(effect.run)
     set_current_pattern("RGB Chase")
     return "Running RGB Chase effect..."
