@@ -5,6 +5,7 @@ from lumiweb.effects.generic.chase import Chase
 from lumiweb.effects.halloween import PURPLE, ORANGE
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
 from lumiweb.effects.halloween.candy_corn import CandyCorn
+from lumiweb.effects.halloween.color_fade import HalloweenColorFade
 
 
 router = APIRouter(
@@ -39,3 +40,11 @@ async def candy_corn():
     globals.STRIP.set_animation(effect.run)
     set_current_pattern("Candy Corn")
     return "Running candy corn effect..."
+
+
+@router.get("/colorfade")
+async def halloween_color_fade():
+    effect = HalloweenColorFade(globals.STRIP)
+    globals.STRIP.set_animation(effect.run)
+    set_current_pattern("Halloween Color Fade")
+    return "Running Halloween Color Fade effect..."
