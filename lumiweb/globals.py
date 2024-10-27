@@ -1,0 +1,19 @@
+from lumiweb.strip import Strip
+import neopixel
+import board
+
+# 0 START
+# 200 GARAGE_END
+# 201 LIVING_ROOM_START
+# 333 LIVING_ROOM_END
+# 334 PITCH_START
+# 378/379 PITCH_PEAK
+# 423 PITCH_END
+# 424 OFFICE_START
+# 582 OFFICE_END
+# 583 SIDE_START
+# 721 SIDE END
+NUM_PIXELS = 424
+GPIO_PIN = board.D18
+
+STRIP = Strip(GPIO_PIN, NUM_PIXELS, pixel_order=neopixel.GRB)
