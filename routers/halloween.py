@@ -6,6 +6,8 @@ from lumiweb.effects.halloween import PURPLE, ORANGE
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
 from lumiweb.effects.halloween.candy_corn import CandyCorn
 from lumiweb.effects.halloween.color_fade import HalloweenColorFade
+from lumiweb.effects.halloween.block_areas import HalloweenBlockAreas
+from lumiweb.effects.halloween.ghost import Ghost
 
 
 router = APIRouter(
@@ -43,8 +45,23 @@ async def candy_corn():
 
 
 @router.get("/colorfade")
-async def halloween_color_fade():
+async def color_fade():
     effect = HalloweenColorFade(globals.STRIP)
     globals.STRIP.set_animation(effect.run)
     set_current_pattern("Halloween Color Fade")
     return "Running Halloween Color Fade effect..."
+
+
+@router.get("/blockareas")
+async def block_areas():
+    effect = HalloweenBlockAreas(globals.STRIP)
+    globals.STRIP.set_animation(effect.run)
+    set_current_pattern("Halloween Block Areas")
+    return "Running Halloween Block Areas effect..."
+
+@router.get("/ghost")
+async def ghost():
+    effect = Ghost(globals.STRIP)
+    globals.STRIP.set_animation(effect.run)
+    set_current_pattern("Halloween Ghost")
+    return "Running Halloween Ghost effect..."
