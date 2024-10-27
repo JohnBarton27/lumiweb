@@ -6,14 +6,15 @@ from lumiweb.effects.halloween import PURPLE, ORANGE
 from lumiweb.effects.halloween.halloween_wave import HalloweenWave
 from lumiweb.effects.halloween.candy_corn import CandyCorn
 
-from main import set_current_pattern
-
 
 router = APIRouter(
     prefix="/effect/halloween",
     tags=["halloween"],
     responses={404: {"description": "Not found"}},
 )
+
+
+from main import set_current_pattern
 
 
 @router.get("/chase")
