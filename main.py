@@ -164,6 +164,14 @@ async def fourth_july():
     return "Running Fourth of July effect..."
 
 
+# VALENTINE'S DAY
+@app.get("/effect/valentines")
+async def valentines():
+    effect = Chase(globals.STRIP, [(255, 10, 10), (255, 0, 0), (128, 128, 128), (255, 0, 0), (255, 10, 10)])
+    globals.STRIP.set_animation(effect.run)
+    set_current_pattern("Valentine's Day")
+    return "Running Valentine's Day effect..."
+
 # SHOWS
 
 @app.get("/show/manheimcarol")
